@@ -1,7 +1,9 @@
 const express = require('express');
 const cors = require('cors');
 const dbConnect = require('./configuration/dbConfig');
-const authRoutes = require('./routes/user_routes');
+const authRoutes = require('./routes/auth_routes');
+const userRoutes = require('./routes/user_routes');
+const createAdminAccount = require('./scripts/admin')
 const dotenv = require('dotenv').config();
 const app = express();
 
@@ -14,8 +16,12 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
 
+//Calling admin account
+createAdminAccount();
+
 // Routes
 app.use('/api/auth', authRoutes); // <-- mounts your /register route
+app.use('/api/user', userRoutes); // <-- mounts your /user route
 
 // Default route
 app.use('/', (req, res) => {
