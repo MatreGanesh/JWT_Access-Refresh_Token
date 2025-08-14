@@ -23,7 +23,7 @@ export default function Navbar() {
             <li className='px-6 py-1 list-none cursor-pointer'>Home</li>
             <li className='px-6 py-1 list-none cursor-pointer'>About</li>
             <li className='px-6 py-1 list-none cursor-pointer'>Contect</li>
-            <li onClick={handleLogout}>
+            <li onClick={handleLogout} className='list-none cursor-pointer'>
               <button className='px-5 py-0.5 font-semibold border rounded-sm cursor-pointer'>
                 Logout
               </button>

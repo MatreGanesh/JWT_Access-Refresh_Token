@@ -32,27 +32,28 @@ export default function Login() {
 
             if (!response.ok) {
                 throw new Error(`HTTP error! Status: ${response.status}`);
-            } else {
-                navigate('/dashboard')
             }
 
             const data = await response.json();
             console.log(data.token);
 
-            //Save the token to localstorage
+            // Save token before navigation
             const token = data.token;
-            localStorage.setItem('token', token)
+            localStorage.setItem('token', token);
+
+            // Now navigate
+            navigate('/dashboard');
+
         } catch (error) {
             console.error("Error:", error);
         } finally {
-            setFormData({
-                email: '', password: ''
-            })
+            setFormData({ email: '', password: '' });
         }
 
-        console.log('email :', formData.email)
-        console.log('password :', formData.password)
-    }
+        console.log('email :', formData.email);
+        console.log('password :', formData.password);
+    };
+
 
 
 
